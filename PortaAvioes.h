@@ -8,8 +8,10 @@ class PortaAvioes
 public:
     PortaAvioes();
     ~PortaAvioes();
-    adicionaTripulacao(int novaTripulacao){
+    int adicionaTripulacao(int novaTripulacao){
         tripulacaoQuantidade += novaTripulacao;
+        
+        return tripulacaoQuantidade;
     }
 
 private:
