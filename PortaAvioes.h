@@ -6,13 +6,10 @@ using std::string;
 class PortaAvioes
 {
 public:
-    PortaAvioes();
+    PortaAvioes(int);// construtor
     ~PortaAvioes();
-    int adicionaTripulacao(int novaTripulacao){
-        tripulacaoQuantidade += novaTripulacao;
-        
-        return tripulacaoQuantidade;
-    }
+    void defineTripulacaoInicial(int);
+    void adicionaTripulacao(int);
 
 private:
     int tripulacaoQuantidade;
