@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include "PortaAvioes.h"
 
-int main(int argc, char **argv)
+int main()
 {
 	PortaAvioes portaAviao1(50);
     
-    portaAviao1.adicionaTripulacao(46);
+    portaAviao1.adicionaTripulacao(10);
+	
 	return 0;
 }
