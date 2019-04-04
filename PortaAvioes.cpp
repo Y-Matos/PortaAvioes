@@ -8,6 +8,12 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial)
     defineTripulacaoInicial(tripulacaoInicial);
 }
 
+PortaAvioes::PortaAvioes()
+{
+    cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
+    defineTripulacaoInicial(0);
+}
+
 PortaAvioes::~PortaAvioes()
 {
 
@@ -44,4 +50,14 @@ void PortaAvioes::adicionaTripulacao(int novaTripulacao)
 	if(novaTripulacao < 1){
 		cout << "\nValor informado e invalido. ( < 1 )\nTripulacao nao foi alterada.\n\n";
 	}
+}
+
+void PortaAvioes::adicionaTripulacao()
+{
+    
+    tripulacaoQuantidade++;
+    
+    cout << "\nNenhum valor informado, adicionado 1 tripulante." << std::endl;
+    
+    cout << "\nA nova tripulacao e de : " << tripulacaoQuantidade << std::endl;
 }

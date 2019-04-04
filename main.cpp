@@ -3,9 +3,11 @@
 
 int main()
 {
-	PortaAvioes portaAviao1(50);
+	PortaAvioes portaAviao1;
     
     portaAviao1.adicionaTripulacao(10);
+    
+    portaAviao1.adicionaTripulacao();
 	
 	return 0;
 }
