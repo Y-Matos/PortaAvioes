@@ -1,26 +1,47 @@
 #include "PortaAvioes.h"
-
 #include <iostream>
 using std::cout;
+using std::cin;
+using std::endl;
 
-PortaAvioes::PortaAvioes(int tripulacaoInicial)
-{
-    defineTripulacaoInicial(tripulacaoInicial);
+#include <string>
+using std::string;
+
+PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome){
+    
+	setTripulacaoInicial(tripulacaoInicial);
+	
+	setNomeDoCapitao(nome);
+	
 }
 
-PortaAvioes::PortaAvioes()
-{
+PortaAvioes::PortaAvioes(){
     cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
-    defineTripulacaoInicial(0);
+    setTripulacaoInicial(0);
 }
 
-PortaAvioes::~PortaAvioes()
-{
+void PortaAvioes::setNomeDoCapitao(string &nome){
+
+	if(nome.length() <= 40)	{
+	
+		nomeDoCapitao = nome;
+	
+	}
+	else if(nome.length() > 40){
+		nomeDoCapitao = nome.substr(0,40);
+
+		cout << "Numero de caracteres excedeu o limite, primeiros 40 caracteres utilizados" << endl;
+	}
+
+	getNomeDoCapitao();
 
 }
-
-void PortaAvioes::defineTripulacaoInicial(int tripulacaoInicial)
-{
+ 
+const void PortaAvioes::getNomeDoCapitao(){
+	 cout << "\nO nome do Capitao e: " << nomeDoCapitao << endl;
+ }
+ 
+void PortaAvioes::setTripulacaoInicial(int tripulacaoInicial){
     if(tripulacaoInicial >= 0) 
 		tripulacaoQuantidade = tripulacaoInicial;
 
@@ -36,15 +57,20 @@ void PortaAvioes::defineTripulacaoInicial(int tripulacaoInicial)
 
 }
 
-void PortaAvioes::adicionaTripulacao(int novaTripulacao)
-{
+const void PortaAvioes::getTripulacaoQuantidade(){
+
+	cout << "\nA tripulacao atual e de : " << tripulacaoQuantidade << std::endl;
+
+}
+
+void PortaAvioes::adicionaTripulacao(int novaTripulacao){
 	if(novaTripulacao>=1){
     
 		tripulacaoQuantidade += novaTripulacao;
 	
 		cout << "\nTripulacao adicionada com sucesso.\n";
 
-    	cout << "\nA nova tripulacao e de : " << tripulacaoQuantidade << std::endl;
+    	getTripulacaoQuantidade();
 	
 	}
 	if(novaTripulacao < 1){
@@ -52,12 +78,12 @@ void PortaAvioes::adicionaTripulacao(int novaTripulacao)
 	}
 }
 
-void PortaAvioes::adicionaTripulacao()
-{
+void PortaAvioes::adicionaTripulacao(){
     
     tripulacaoQuantidade++;
     
     cout << "\nNenhum valor informado, adicionado 1 tripulante." << std::endl;
     
-    cout << "\nA nova tripulacao e de : " << tripulacaoQuantidade << std::endl;
+    getTripulacaoQuantidade();
+
 }
