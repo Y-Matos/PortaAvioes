@@ -15,11 +15,16 @@ int main(){
 	cout << "Insira o nome do capitao: " << endl;
 	getline(cin, nomeDoCapitao);
 
-	PortaAvioes portaAviao1(10, nomeDoCapitao);
+	PortaAvioes portaAviao1(10, nomeDoCapitao,5, 2);
     
-    portaAviao1.adicionaTripulacao(10);
+	cout<< "\n\n\n-------- Criando Copia ------- ";
+	
+	PortaAvioes copiaPortaAviao(portaAviao1);// criando copia do primeiro objeto
     
-    portaAviao1.adicionaTripulacao();
+	copiaPortaAviao.getTripulacaoQuantidade();
+	copiaPortaAviao.getNomeDoCapitao();
+	copiaPortaAviao.getAvioesDisponiveis();
+	copiaPortaAviao.getDecolagensRealizadas();
 	
 	return 0;
 	
