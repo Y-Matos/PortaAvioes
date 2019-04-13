@@ -7,7 +7,12 @@ using std::endl;
 #include <string>
 using std::string;
 
-PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiveis, int decolagensRealizadas){
+int PortaAvioes::frotaTotalAtiva = 0; // inicializa atributo static frotaTotalAtiva
+const int PortaAvioes::velocidadeMaxima = 30; // inicializa atributo const static velocidadeMaxima
+
+
+PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiveis, int decolagensRealizadas)
+{
     
 	setTripulacaoInicial(tripulacaoInicial);
 	
@@ -16,25 +21,34 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiv
 	setAvioesDisponiveis(avioesDisponiveis);
 	
 	setDecolagensRealizadas(decolagensRealizadas);
+
+  frotaTotalAtiva++;
 	
 	cout<< "\n--------------- Porta Avioes Criado com Sucesso -----------" << endl;
 }
 
-PortaAvioes::PortaAvioes(){
+PortaAvioes::PortaAvioes()
+{
     cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
     setTripulacaoInicial(0);
+
+    frotaTotalAtiva++;
 }
 
-PortaAvioes::PortaAvioes(const PortaAvioes &origem){// construtor de copia
+PortaAvioes::PortaAvioes(const PortaAvioes &origem)
+{// construtor de copia
 	
 	nomeDoCapitao = origem.nomeDoCapitao;
 	avioesDisponiveis = origem.avioesDisponiveis;
 	decolagensRealizadas = origem.decolagensRealizadas;
 	tripulacaoQuantidade = origem.tripulacaoQuantidade;
+
+  frotaTotalAtiva++;
 	
 }
 
-void PortaAvioes::setNomeDoCapitao(string &nome){
+void PortaAvioes::setNomeDoCapitao(string &nome)
+{
 
 	if(nome.length() <= 40)	{
 	
@@ -51,19 +65,21 @@ void PortaAvioes::setNomeDoCapitao(string &nome){
 
 }
  
-void PortaAvioes::getNomeDoCapitao() const{
+void PortaAvioes::getNomeDoCapitao() const
+{
 	 cout << "\nO nome do Capitao e: " << nomeDoCapitao << endl;
- }
+}
  
-void PortaAvioes::setTripulacaoInicial(int tripulacaoInicial){
-    if(tripulacaoInicial >= 0) 
+void PortaAvioes::setTripulacaoInicial(int tripulacaoInicial)
+{
+    if(tripulacaoInicial >= 0 && tripulacaoInicial <= tripulacaoMaxima) 
 		tripulacaoQuantidade = tripulacaoInicial;
 
-	if(tripulacaoInicial < 0){
+	if(tripulacaoInicial < 0 || tripulacaoInicial > tripulacaoMaxima){
 		
 		tripulacaoQuantidade = 0;
 		
-		cout << "Valor invalido inserido ( < 0 ). \nTripulacao Inicial definida com o valor padrao.\n"; 
+		cout << "Valor invalido inserido. \nTripulacao Inicial definida com o valor padrao.\n"; 
 
 	}
 
@@ -71,14 +87,16 @@ void PortaAvioes::setTripulacaoInicial(int tripulacaoInicial){
 
 }
 
-void PortaAvioes::getTripulacaoQuantidade() const{
+void PortaAvioes::getTripulacaoQuantidade() const
+{
 
 	cout << "\nA tripulacao atual e de : " << tripulacaoQuantidade << std::endl;
 
 }
 
-void PortaAvioes::adicionaTripulacao(int novaTripulacao){
-	if(novaTripulacao>=1){
+void PortaAvioes::adicionaTripulacao(int novaTripulacao)
+{
+	if(novaTripulacao>=1 && novaTripulacao <= tripulacaoMaxima-tripulacaoQuantidade){
     
 		tripulacaoQuantidade += novaTripulacao;
 	
@@ -87,12 +105,13 @@ void PortaAvioes::adicionaTripulacao(int novaTripulacao){
     	getTripulacaoQuantidade();
 	
 	}
-	if(novaTripulacao < 1){
-		cout << "\nValor informado e invalido. ( < 1 )\nTripulacao nao foi alterada.\n\n";
+	if(novaTripulacao < 1 || novaTripulacao > tripulacaoMaxima-tripulacaoQuantidade){
+		cout << "\nValor informado e invalido.\nTripulacao nao foi alterada.\n\n";
 	}
 }
 
-void PortaAvioes::adicionaTripulacao(){
+void PortaAvioes::adicionaTripulacao()
+{
     
     tripulacaoQuantidade++;
     
@@ -102,7 +121,8 @@ void PortaAvioes::adicionaTripulacao(){
 
 }
 
-void PortaAvioes::setAvioesDisponiveis(int numeroDeAvioes){
+void PortaAvioes::setAvioesDisponiveis(int numeroDeAvioes)
+{
 	if(numeroDeAvioes >= 0) 
 		avioesDisponiveis = numeroDeAvioes;
 
@@ -118,13 +138,15 @@ void PortaAvioes::setAvioesDisponiveis(int numeroDeAvioes){
 	
 }
 
-void PortaAvioes::getAvioesDisponiveis() const{
+void PortaAvioes::getAvioesDisponiveis() const
+{
 
 	cout << "\nO numero de Avioes Disponiveis e de : " << avioesDisponiveis << std::endl;
 
 }
 
-void PortaAvioes::setDecolagensRealizadas(int numeroDeDecolagens){
+void PortaAvioes::setDecolagensRealizadas(int numeroDeDecolagens)
+{
 	if(numeroDeDecolagens >= 0) 
 		decolagensRealizadas = numeroDeDecolagens;
 
@@ -140,8 +162,14 @@ void PortaAvioes::setDecolagensRealizadas(int numeroDeDecolagens){
 	
 }
 
-void PortaAvioes::getDecolagensRealizadas() const{
+void PortaAvioes::getDecolagensRealizadas() const
+{
 
 	cout << "\nO numero de Decolagens Realizadas e de : " << decolagensRealizadas << std::endl;
 
+}
+
+void PortaAvioes::getFrotaTotalAtiva()
+{
+  cout << "\nO numero de Porta Avioes ativos atualmente e de: " << frotaTotalAtiva << endl;
 }

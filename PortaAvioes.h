@@ -6,14 +6,14 @@ using std::string;
 class PortaAvioes{
 
 public:
-    PortaAvioes(int, string &, int, int);// construtor
-    PortaAvioes();// construtor sobrecarregado
+	PortaAvioes(int, string &, int, int);// construtor
+	PortaAvioes();// construtor sobrecarregado
 	PortaAvioes(const PortaAvioes &);// construtor de copia
     
-    void setTripulacaoInicial(int);
+	void setTripulacaoInicial(int);
     
 	void adicionaTripulacao(int); // recebe um inteiro e adiciona à tripulacão do Porta Avioes
-    void adicionaTripulacao();// nao recebe parametros então adiciona 1 à tripulacão do Porta Avioes
+	void adicionaTripulacao();// nao recebe parametros então adiciona 1 à tripulacão do Porta Avioes
 
 	void getTripulacaoQuantidade() const;
 
@@ -26,11 +26,19 @@ public:
 	void setDecolagensRealizadas(int);
 	void getDecolagensRealizadas() const;
 
+	static void getFrotaTotalAtiva();//metodo static
+
 private:
-    int tripulacaoQuantidade;
+	int tripulacaoQuantidade;
 	int avioesDisponiveis;
 	int decolagensRealizadas;
 	string nomeDoCapitao;
+
+	const int tripulacaoMaxima = 500;
+	static int frotaTotalAtiva;
+	static const int velocidadeMaxima;
+  
+
 
 };
 
