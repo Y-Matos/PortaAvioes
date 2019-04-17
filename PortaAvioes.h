@@ -1,3 +1,4 @@
+#include "Aviao.h"
 #ifndef PORTAAVIOES_H
 #define PORTAAVIOES_H
 #include <string>
@@ -27,6 +28,8 @@ public:
 	void getDecolagensRealizadas() const;
 
 	static void getFrotaTotalAtiva();//metodo static
+	
+	Aviao hangar;
 
 private:
 	int tripulacaoQuantidade;
@@ -37,8 +40,8 @@ private:
 	const int tripulacaoMaxima = 500;
 	static int frotaTotalAtiva;
 	static const int velocidadeMaxima;
-  
-
+	
+	
 
 };
 

@@ -1,4 +1,6 @@
 #include "PortaAvioes.h"
+#include "Aviao.h"
+
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -12,6 +14,7 @@ const int PortaAvioes::velocidadeMaxima = 30; // inicializa atributo const stati
 
 
 PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiveis, int decolagensRealizadas)
+:hangar()
 {
     
 	setTripulacaoInicial(tripulacaoInicial);
@@ -22,7 +25,7 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiv
 	
 	setDecolagensRealizadas(decolagensRealizadas);
 
-  frotaTotalAtiva++;
+	frotaTotalAtiva++;
 	
 	cout<< "\n--------------- Porta Avioes Criado com Sucesso -----------" << endl;
 }
