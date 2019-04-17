@@ -31,6 +31,7 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiv
 }
 
 PortaAvioes::PortaAvioes()
+:hangar()
 {
     cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
     setTripulacaoInicial(0);
@@ -39,6 +40,7 @@ PortaAvioes::PortaAvioes()
 }
 
 PortaAvioes::PortaAvioes(const PortaAvioes &origem)
+:hangar()
 {// construtor de copia
 	
 	nomeDoCapitao = origem.nomeDoCapitao;
