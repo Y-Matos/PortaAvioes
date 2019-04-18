@@ -1,10 +1,13 @@
+#include "Hangar.h"
 #include "Aviao.h"
+
 #ifndef PORTAAVIOES_H
 #define PORTAAVIOES_H
 #include <string>
 using std::string;
 
-class PortaAvioes{
+class PortaAvioes
+{
 
 public:
 	PortaAvioes(int, string &, int, int);// construtor
@@ -29,7 +32,7 @@ public:
 
 	static void getFrotaTotalAtiva();//metodo static
 	
-	Aviao hangar;
+	void info() const;
 
 private:
 	int tripulacaoQuantidade;
@@ -37,12 +40,13 @@ private:
 	int decolagensRealizadas;
 	string nomeDoCapitao;
 
-	const int tripulacaoMaxima = 500;
+	static const int tripulacaoMaxima = 500;
 	static int frotaTotalAtiva;
 	static const int velocidadeMaxima;
 	
-	
-
+    Aviao aviaoTeste;
+	Hangar hangarPrincipal;
+    
 };
 
 #endif // PORTAAVIOES_H

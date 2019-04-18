@@ -6,18 +6,19 @@ using std::string;
 class Aviao
 {
 public:
-	Aviao();
-	~Aviao();
-	
-	void initTiposDeAviao();
-	void getTiposDeAviao() const;
-	void setTiposDeAviao(int,string&);
-	
+    Aviao();
+    ~Aviao();
+    
+    void getNomeDoAviao() const;
+    void getVelocidadeMaxima() const;
+    void getCapacidadeTanque() const;
+    
+    void info() const;
+
 private:
-	
-	const static int numDeTipos = 5;
-	string tiposDeAviao[numDeTipos];
-	
+    string nomeDoAviao;
+    int velocidadeMaxima;
+    int capacidadeTanque;
 };
 
 #endif // AVIAO_H

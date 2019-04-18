@@ -1,5 +1,5 @@
 #include "PortaAvioes.h"
-#include "Aviao.h"
+#include "Hangar.h"
 
 #include <iostream>
 using std::cout;
@@ -12,9 +12,19 @@ using std::string;
 int PortaAvioes::frotaTotalAtiva = 0; // inicializa atributo static frotaTotalAtiva
 const int PortaAvioes::velocidadeMaxima = 30; // inicializa atributo const static velocidadeMaxima
 
+void PortaAvioes::info() const
+{
+    getNomeDoCapitao();
+    getAvioesDisponiveis();
+    getDecolagensRealizadas();
+    getTripulacaoQuantidade();
+    getFrotaTotalAtiva();
+    hangarPrincipal.info();
+    aviaoTeste.info();
+}
 
 PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiveis, int decolagensRealizadas)
-:hangar()
+:hangarPrincipal(), aviaoTeste()
 {
     
 	setTripulacaoInicial(tripulacaoInicial);
@@ -31,7 +41,7 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiv
 }
 
 PortaAvioes::PortaAvioes()
-:hangar()
+:hangarPrincipal(), aviaoTeste()
 {
     cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
     setTripulacaoInicial(0);
@@ -40,7 +50,7 @@ PortaAvioes::PortaAvioes()
 }
 
 PortaAvioes::PortaAvioes(const PortaAvioes &origem)
-:hangar()
+:hangarPrincipal(), aviaoTeste()
 {// construtor de copia
 	
 	nomeDoCapitao = origem.nomeDoCapitao;

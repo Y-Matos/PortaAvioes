@@ -1,39 +1,41 @@
 #include "Aviao.h"
+#include <string>
+using std::string;
+
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
 
-#include <string>
-using std::string;
-
 Aviao::Aviao()
+: nomeDoAviao("NomeTeste"), velocidadeMaxima(500),capacidadeTanque(200)
 {
-	initTiposDeAviao();
+    nomeDoAviao="NomeTeste";
 }
 
 Aviao::~Aviao()
 {
 }
 
-void Aviao::initTiposDeAviao()
+void Aviao::getNomeDoAviao() const
 {
-	for(int contador=0; contador < numDeTipos; contador++){
-		tiposDeAviao[contador] = "_vazio_";
-	}
+    cout << "O nome do aviao eh: " << nomeDoAviao << endl;
 }
 
-void Aviao::getTiposDeAviao() const
+void Aviao::getVelocidadeMaxima() const
 {
-	cout << "\n";
-	for(int contador=0; contador < numDeTipos; contador++){
-		cout << "Modelo "<< contador+1 << " - " <<tiposDeAviao[contador] << "\n";
-	}
-	cout << "\n";
+    cout << "A velocidade maxima do aviao eh: " << velocidadeMaxima << endl;
 }
 
-void Aviao::setTiposDeAviao(int tipoSelecionado, string &nomeModelo)
+void Aviao::getCapacidadeTanque() const
 {
+    cout << "A capacidade do tanque do aviao eh: " << capacidadeTanque << endl;
+}
 
-	tiposDeAviao[tipoSelecionado-1] = nomeModelo;
+void Aviao::info() const
+{
+    getNomeDoAviao();
+    getVelocidadeMaxima();
+    getCapacidadeTanque();
+    
 }
