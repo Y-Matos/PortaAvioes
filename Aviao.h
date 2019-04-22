@@ -6,7 +6,7 @@ using std::string;
 class Aviao
 {
 public:
-    Aviao();
+    Aviao(const string&, int, int);
     ~Aviao();
     
     void getNomeDoAviao() const;

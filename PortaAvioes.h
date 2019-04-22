@@ -3,6 +3,7 @@
 
 #ifndef PORTAAVIOES_H
 #define PORTAAVIOES_H
+
 #include <string>
 using std::string;
 
@@ -10,7 +11,7 @@ class PortaAvioes
 {
 
 public:
-	PortaAvioes(int, string &, int, int);// construtor
+	PortaAvioes(int,const string &, int, int);// construtor
 	PortaAvioes();// construtor sobrecarregado
 	PortaAvioes(const PortaAvioes &);// construtor de copia
     
@@ -21,7 +22,7 @@ public:
 
 	void getTripulacaoQuantidade() const;
 
-	void setNomeDoCapitao(string &);
+	void setNomeDoCapitao(const string &);
 	void getNomeDoCapitao() const; 
     
 	void setAvioesDisponiveis(int);

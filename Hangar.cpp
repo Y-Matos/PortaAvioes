@@ -12,6 +12,7 @@ Hangar::Hangar()
 
 	initTiposDeAviao();
 }
+
 Hangar::~Hangar()
 {
 }
@@ -27,7 +28,7 @@ void Hangar::getTiposDeAviao() const
 {
 	cout << "\n";
 	for(int contador=0; contador < numDeTipos; contador++){
-		cout << "Modelo "<< contador+1 << " - " <<tiposDeAviao[contador] << "\n";
+		cout << "Classe "<< contador+1 << " - " <<tiposDeAviao[contador] << "\n";
 	}
 	cout << "\n";
 }
@@ -40,6 +41,8 @@ void Hangar::setTiposDeAviao(int tipoSelecionado, string &nomeModelo)
 
 void Hangar::info() const
 {
+	cout << "----------------------------------------" << endl;
+    cout << "----------- INFO DO HANGAR -------------\n" << endl;
     getTiposDeAviao();
     
 }

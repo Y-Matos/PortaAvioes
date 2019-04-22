@@ -7,10 +7,11 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-Aviao::Aviao()
-: nomeDoAviao("NomeTeste"), velocidadeMaxima(500),capacidadeTanque(200)
+Aviao::Aviao(const string &nomeDoAviao,int velocidadeMaxima ,int capacidadeTanque)
 {
-    nomeDoAviao="NomeTeste";
+    this->nomeDoAviao = nomeDoAviao;
+	this->velocidadeMaxima = velocidadeMaxima;
+	this->capacidadeTanque = capacidadeTanque;
 }
 
 Aviao::~Aviao()
@@ -24,17 +25,19 @@ void Aviao::getNomeDoAviao() const
 
 void Aviao::getVelocidadeMaxima() const
 {
-    cout << "A velocidade maxima do aviao eh: " << velocidadeMaxima << endl;
+    cout << "A velocidade maxima do aviao eh: " << velocidadeMaxima << "km/h" << endl;
 }
 
 void Aviao::getCapacidadeTanque() const
 {
-    cout << "A capacidade do tanque do aviao eh: " << capacidadeTanque << endl;
+    cout << "A capacidade do tanque do aviao eh: " << capacidadeTanque << "L" << endl;
 }
 
 void Aviao::info() const
 {
-    getNomeDoAviao();
+	cout << "---------------------------------------" << endl;
+    cout << "----------- INFO DO AVIAO -------------\n" << endl;
+	getNomeDoAviao();
     getVelocidadeMaxima();
     getCapacidadeTanque();
     

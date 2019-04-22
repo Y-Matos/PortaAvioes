@@ -13,18 +13,21 @@ int PortaAvioes::frotaTotalAtiva = 0; // inicializa atributo static frotaTotalAt
 const int PortaAvioes::velocidadeMaxima = 30; // inicializa atributo const static velocidadeMaxima
 
 void PortaAvioes::info() const
-{
+{	
+	cout << "---------------------------------------" << endl;
+    cout << "------- INFO DO PORTA AVIOES ----------\n" << endl;
     getNomeDoCapitao();
     getAvioesDisponiveis();
     getDecolagensRealizadas();
     getTripulacaoQuantidade();
     getFrotaTotalAtiva();
+	cout << "\n";
     hangarPrincipal.info();
     aviaoTeste.info();
 }
 
-PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiveis, int decolagensRealizadas)
-:hangarPrincipal(), aviaoTeste()
+PortaAvioes::PortaAvioes(int tripulacaoInicial,const string &nome, int avioesDisponiveis, int decolagensRealizadas)
+:hangarPrincipal(), aviaoTeste("XB-70 VALKYRIE", 3310, 176.950)
 {
     
 	setTripulacaoInicial(tripulacaoInicial);
@@ -41,7 +44,7 @@ PortaAvioes::PortaAvioes(int tripulacaoInicial, string &nome, int avioesDisponiv
 }
 
 PortaAvioes::PortaAvioes()
-:hangarPrincipal(), aviaoTeste()
+:hangarPrincipal(), aviaoTeste("XB-70 VALKYRIE", 3310, 300)
 {
     cout << "\nTripulacao Inicial nao informada, valor padrao carregado." << std::endl;
     setTripulacaoInicial(0);
@@ -50,7 +53,7 @@ PortaAvioes::PortaAvioes()
 }
 
 PortaAvioes::PortaAvioes(const PortaAvioes &origem)
-:hangarPrincipal(), aviaoTeste()
+:hangarPrincipal(), aviaoTeste("XB-70 VALKYRIE", 3310, 300)
 {// construtor de copia
 	
 	nomeDoCapitao = origem.nomeDoCapitao;
@@ -58,11 +61,11 @@ PortaAvioes::PortaAvioes(const PortaAvioes &origem)
 	decolagensRealizadas = origem.decolagensRealizadas;
 	tripulacaoQuantidade = origem.tripulacaoQuantidade;
 
-  frotaTotalAtiva++;
+	frotaTotalAtiva++;
 	
 }
 
-void PortaAvioes::setNomeDoCapitao(string &nome)
+void PortaAvioes::setNomeDoCapitao(const string &nome)
 {
 
 	if(nome.length() <= 40)	{
