@@ -6,7 +6,9 @@ using std::string;
 class Aviao
 {
 public:
-    Aviao(const string&, int, int);
+    Aviao(const string&, int, int);// Construtor que recebe todos os argumentos
+	Aviao();// Construtor que não recebe nenhum dos argumentos
+	Aviao(const Aviao &);// Construtor de copia
     ~Aviao();
     
     void getNomeDoAviao() const;

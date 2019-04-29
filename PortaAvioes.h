@@ -11,9 +11,9 @@ class PortaAvioes
 {
 
 public:
-	PortaAvioes(int,const string &, int, int);// construtor
-	PortaAvioes();// construtor sobrecarregado
-	PortaAvioes(const PortaAvioes &);// construtor de copia
+	PortaAvioes(int,const string &, int, int); // Construtor que recebe todos os argumentos
+	PortaAvioes(); // Construtor que não recebe nenhum dos argumentos
+	PortaAvioes(const PortaAvioes &);// Construtor de copia
     
 	void setTripulacaoInicial(int);
     
@@ -36,6 +36,9 @@ public:
 	void info() const;
 
 private:
+	Aviao aviaoTeste;
+	Hangar hangarPrincipal;
+
 	int tripulacaoQuantidade;
 	int avioesDisponiveis;
 	int decolagensRealizadas;
@@ -45,8 +48,7 @@ private:
 	static int frotaTotalAtiva;
 	static const int velocidadeMaxima;
 	
-    Aviao aviaoTeste;
-	Hangar hangarPrincipal;
+    
     
 };
 
