@@ -10,11 +10,16 @@ using std::string;
 class PortaAvioes
 {
 
+	friend void callCadastroHangar(const string &nomeModelo, const int indice){
+		hangarPrincipal.cadastraTipoDeAviao(const string &nomeModelo, const int indice);
+	}
+	
 public:
 	PortaAvioes(int,const string &, int, int); // Construtor que recebe todos os argumentos
 	PortaAvioes(); // Construtor que não recebe nenhum dos argumentos
 	PortaAvioes(const PortaAvioes &);// Construtor de copia
-    
+	~PortaAvioes();
+
 	void setTripulacaoInicial(int);
     
 	void adicionaTripulacao(int); // recebe um inteiro e adiciona à tripulacão do Porta Avioes
@@ -36,9 +41,11 @@ public:
 	void info() const;
 
 private:
-	Aviao aviaoTeste;
+	
 	Hangar hangarPrincipal;
-
+	Aviao aviaoTeste;
+	
+	
 	int tripulacaoQuantidade;
 	int avioesDisponiveis;
 	int decolagensRealizadas;
