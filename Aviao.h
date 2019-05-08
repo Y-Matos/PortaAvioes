@@ -11,6 +11,10 @@ public:
 	Aviao(const Aviao &);// Construtor de copia
     ~Aviao();
     
+	string setNomeDoAviao(const string &);
+	int setVelocidadeMaxima(int);
+	int setCapacidadeTanque(int);
+	
     void getNomeDoAviao() const;
     void getVelocidadeMaxima() const;
     void getCapacidadeTanque() const;
@@ -21,6 +25,8 @@ private:
     string nomeDoAviao;
     int velocidadeMaxima;
     int capacidadeTanque;
+	
+	const static int VELOCIDADEDOSOM = 1234;
 };
 
 #endif // AVIAO_H

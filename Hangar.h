@@ -6,19 +6,23 @@ using std::string;
 class Hangar
 {
 public:
-	Hangar();
+	Hangar(const string &,const string &,const string &,const string &,const string &); // INICIALIZA COM TODOS OS TIPOS
+	Hangar(); // INICIALIZA COM _VAZIO_ EM TODOS OS TIPOS
+	Hangar(const Hangar &); // CONSTRUTOR DE COPIA
 	~Hangar();
 	
-	void initTiposDeAviao();
 	void getTiposDeAviao() const;
-	void setTiposDeAviao(int,string&);
-	
-    void info() const;
+	void info() const;
     
+	void setNovoHangar(Hangar *);
+	void setTipoDeAviao(const string &);
+   
 private:
 	
-	const static int numDeTipos = 5;
-	string tiposDeAviao[numDeTipos];
+	static const int NUMDETIPOS = 5;
+	string tiposNome[NUMDETIPOS];
+	
+	
 	
 };
 
