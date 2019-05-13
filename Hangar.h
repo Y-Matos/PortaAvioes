@@ -12,17 +12,15 @@ public:
 	~Hangar();
 	
 	void getTiposDeAviao() const;
-	void info() const;
-    
-	void setNovoHangar(Hangar *);
 	void setTipoDeAviao(const string &);
-   
+
+	void info() const;
+	
 private:
+	int tiposAtivos; 
 	
 	static const int NUMDETIPOS = 5;
 	string tiposNome[NUMDETIPOS];
-	
-	
 	
 };
 

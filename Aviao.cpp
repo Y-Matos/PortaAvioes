@@ -1,11 +1,7 @@
 #include "Aviao.h"
-#include <string>
-using std::string;
 
 #include <iostream>
 using std::cout;
-using std::cin;
-using std::endl;
 
 //----Construtores e Destrutores------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +14,7 @@ Aviao::Aviao(const string &nomeDoAviao,int velocidadeMaxima ,int capacidadeTanqu
 
 Aviao::Aviao()
 {
-	cout << "Nenhum parametro informado. Valores Padrões Carregados." << endl;
+	cout << "Nenhum parametro informado. Valores Padrões Carregados." << "\n";
 	this->nomeDoAviao = "Nome Aviao Padrao";
 	this->velocidadeMaxima = VELOCIDADEDOSOM;
 	this->capacidadeTanque = 1000;
@@ -47,7 +43,7 @@ string Aviao::setNomeDoAviao(const string &nomeDoAviao)
 	else if(nomeDoAviao.length() > 40){
 		return nomeDoAviao.substr(0,40);
 
-		cout << "Numero de caracteres excedeu o limite, primeiros 40 caracteres utilizados" << endl;
+		cout << "Numero de caracteres excedeu o limite, primeiros 40 caracteres utilizados" << "\n";
 	}
 	return "";
 }
@@ -74,23 +70,23 @@ int Aviao::setCapacidadeTanque(int capacidadeTanque)
 
 void Aviao::getNomeDoAviao() const
 {
-    cout << "O nome do aviao eh: " << this->nomeDoAviao << endl;
+    cout << "O nome do aviao eh: " << this->nomeDoAviao << "\n";
 }
 
 void Aviao::getVelocidadeMaxima() const
 {
-    cout << "A velocidade maxima do aviao eh: " << velocidadeMaxima << "km/h" << endl;
+    cout << "A velocidade maxima do aviao eh: " << this->velocidadeMaxima << "km/h" << "\n";
 }
 
 void Aviao::getCapacidadeTanque() const
 {
-    cout << "A capacidade do tanque do aviao eh: " << capacidadeTanque << "L" << endl;
+    cout << "A capacidade do tanque do aviao eh: " << this->capacidadeTanque << "L" << "\n";
 }
 
-void Aviao::info() const
+void Aviao::info(int index) const
 {
-	cout << "---------------------------------------" << endl;
-    cout << "----------- INFO DO AVIAO -------------\n" << endl;
+	cout << "--------------------------------------------------" << "\n";
+    cout << "-------------- INFO DO AVIAO #" << index+1 << " -----------------\n" << "\n";
 	getNomeDoAviao();
     getVelocidadeMaxima();
     getCapacidadeTanque();

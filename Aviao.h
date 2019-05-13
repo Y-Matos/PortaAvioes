@@ -11,6 +11,8 @@ public:
 	Aviao(const Aviao &);// Construtor de copia
     ~Aviao();
     
+	void info(int) const;
+	
 	string setNomeDoAviao(const string &);
 	int setVelocidadeMaxima(int);
 	int setCapacidadeTanque(int);
@@ -19,8 +21,6 @@ public:
     void getVelocidadeMaxima() const;
     void getCapacidadeTanque() const;
     
-    void info() const;
-
 private:
     string nomeDoAviao;
     int velocidadeMaxima;

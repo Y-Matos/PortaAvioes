@@ -15,52 +15,52 @@ public:
 	PortaAvioes(const PortaAvioes &);// Construtor de copia
 	~PortaAvioes();
 
-	void setTripulacaoInicial(int);
-    
-	void adicionaTripulacao(int); // recebe um inteiro e adiciona à tripulacão do Porta Avioes
-	void adicionaTripulacao();// nao recebe parametros então adiciona 1 à tripulacão do Porta Avioes
-
+	void setTripulacao(int);
 	void getTripulacaoQuantidade() const;
 
 	void setNomeDoCapitao(const string &);
 	void getNomeDoCapitao() const; 
-	
-	void setNovoTenente(const string &);
-    void getTenentes() const;
-	
-	void setAvioesDisponiveis(int);
-	void getAvioesDisponiveis() const;
-	
-	void setDecolagensRealizadas(int);
-	void getDecolagensRealizadas() const;
 
-	static void getFrotaTotalAtiva();//metodo static
-	
-	void atualizaHangar(Hangar*); // Metodo que recebe ponteiro da Classe Hangar 
+	void setNovoTenente(const string &);
+	void getTenentes() const;
+
+	void setPilotosDisponiveis(int);
+	void getPilotosDisponiveis() const;
+
+	void setCapacidade(int);
+	void getCapacidade() const;
+
+	static void getNumDeAvioesAtivos();//metodo static
+
 	void cadastraTipoDeAviao(const string &);
-	
+	void getTiposDeAviao() const;
+
+	void adicionaNovoAviao(const Aviao &);
+	void getListaAvioes() const;
+
 	void info() const;
-	
-	
+
 private:
-	
+
 	Hangar hangarPrincipal;
-	Aviao aviaoTeste;
-	
 	Hangar *ponteiroHangar;
-	Aviao *ponteiroAviao;
-	
+	Aviao **arrayAviao;
+
+	static int numDeAvioesAtivos;
+
+	void expandeArray();
+
+	//atributos membro
+
 	int tripulacaoQuantidade;
-	int avioesDisponiveis;
-	int decolagensRealizadas;
+	int pilotosDisponiveis;
+	int capacidade;
 	string nomeDoCapitao;
 
-	static const int TRIPULACAOMAXIMA;
-	static int frotaTotalAtiva;
-	static const int VELOCIDADEMAXIMA;
-	
-	static const int NUMDETENENTES = 3;
-    static string nomeDosTenentes[NUMDETENENTES];
+	const int TRIPULACAOMAXIMA = 500;
+
+	static const int NUMDETENENTES = 5;
+	static string nomeDosTenentes[NUMDETENENTES];
 
 };
 
