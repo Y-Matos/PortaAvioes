@@ -3,6 +3,8 @@
 #include <string>
 using std::string;
 
+using std::ostream;
+
 class Aviao
 {
 public:
@@ -13,14 +15,23 @@ public:
     
 	void info(int) const;
 	
-	string setNomeDoAviao(const string &);
-	int setVelocidadeMaxima(int);
-	int setCapacidadeTanque(int);
+	void setNomeDoAviao(const string &);
+	void setVelocidadeMaxima(int);
+	void setCapacidadeTanque(int);
 	
-    void getNomeDoAviao() const;
-    void getVelocidadeMaxima() const;
-    void getCapacidadeTanque() const;
-    
+    string getNomeDoAviao() const;
+    int getVelocidadeMaxima() const;
+    int getCapacidadeTanque() const;
+    	
+	//---------------- SOBRECARGA DE OPERADORES -----------------
+	
+	friend ostream &operator<< (ostream &output, const Aviao&); // Imprime Dados do Avião
+	const Aviao &operator= (const Aviao&); // copia um avião para outro
+	bool operator == (const Aviao&) const; // testa se aviões são iguais
+	bool operator != (const Aviao&) const; // testa se aviões são diferentes
+	bool operator < (const Aviao &origem) const; // testa se um avião é mais lento que outro
+	bool operator > (const Aviao &origem) const; // testa se um avião é mais rápido que outro
+	
 private:
     string nomeDoAviao;
     int velocidadeMaxima;

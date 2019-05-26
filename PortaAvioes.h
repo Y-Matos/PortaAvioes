@@ -1,8 +1,13 @@
+#ifndef PORTAAVIOES_H
+#define PORTAAVIOES_H
+
 #include "Hangar.h"
 #include "Aviao.h"
 
-#ifndef PORTAAVIOES_H
-#define PORTAAVIOES_H
+#include <cstddef> 
+using std::size_t;
+
+using std::ostream;
 
 #include <string>
 using std::string;
@@ -10,28 +15,29 @@ using std::string;
 class PortaAvioes
 {
 public:
-	PortaAvioes(int,const string &, int, int); // Construtor que recebe todos os argumentos
+	PortaAvioes(int,const string &, int, size_t); // Construtor que recebe todos os argumentos
 	PortaAvioes(); // Construtor que não recebe nenhum dos argumentos
 	PortaAvioes(const PortaAvioes &);// Construtor de copia
 	~PortaAvioes();
 
 	void setTripulacao(int);
-	void getTripulacaoQuantidade() const;
+	int getTripulacaoQuantidade() const;
 
 	void setNomeDoCapitao(const string &);
-	void getNomeDoCapitao() const; 
+	string getNomeDoCapitao() const; 
 
 	void setNovoTenente(const string &);
-	void getTenentes() const;
+	string getTenentes(int) const;
+	void listaTenentes() const;
 
 	void setPilotosDisponiveis(int);
-	void getPilotosDisponiveis() const;
+	int getPilotosDisponiveis() const;
 
 	void setCapacidade(int);
-	void getCapacidade() const;
+	int getCapacidade() const;
 
-	static void getNumDeAvioesAtivos();//metodo static
-
+	int getNumDeAvioesAtivos() const;
+	
 	void cadastraTipoDeAviao(const string &);
 	void getTiposDeAviao() const;
 
@@ -39,14 +45,25 @@ public:
 	void getListaAvioes() const;
 
 	void info() const;
+	
+	//---------------- SOBRECARGA DE OPERADORES -----------------
+	
+	friend ostream &operator<< (ostream &output, const PortaAvioes&);
+	const PortaAvioes &operator= ( PortaAvioes &);
+	bool operator == (const PortaAvioes&) const;
+	bool operator != (const PortaAvioes &origem) const;
+	string &operator[] (int);
+	string operator[] (int) const ;
+	
+	// AUXILIAR PARA COPIA DO ARRAY DE PONTEIROS
+	friend void swap(PortaAvioes &, PortaAvioes &);
 
 private:
-
 	Hangar hangarPrincipal;
-	Hangar *ponteiroHangar;
+	
+	int numDeAvioesAtivos;
+	size_t capacidade;
 	Aviao **arrayAviao;
-
-	static int numDeAvioesAtivos;
 
 	void expandeArray();
 
@@ -54,7 +71,6 @@ private:
 
 	int tripulacaoQuantidade;
 	int pilotosDisponiveis;
-	int capacidade;
 	string nomeDoCapitao;
 
 	const int TRIPULACAOMAXIMA = 500;

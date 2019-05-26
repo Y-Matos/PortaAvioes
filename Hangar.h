@@ -3,6 +3,8 @@
 #include <string>
 using std::string;
 
+using std::ostream;
+
 class Hangar
 {
 public:
@@ -11,11 +13,21 @@ public:
 	Hangar(const Hangar &); // CONSTRUTOR DE COPIA
 	~Hangar();
 	
-	void getTiposDeAviao() const;
+	string getTiposDeAviao(int) const;
 	void setTipoDeAviao(const string &);
 
 	void info() const;
 	
+	
+	//---------------- SOBRECARGA DE OPERADORES -----------------
+	
+	friend ostream &operator << (ostream &output, const Hangar&); // Imprime Dados do Hangar
+	const Hangar &operator = (const Hangar&); // copia um avião para outro
+	bool operator == (const Hangar&) const; // testa se hangar são iguais
+	bool operator != (const Hangar&) const; // testa se hangar são diferentes
+	string &operator[] (int); 
+	string operator[] (int) const;
+
 private:
 	int tiposAtivos; 
 	

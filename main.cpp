@@ -4,6 +4,7 @@
 #include <iostream>
 using std::cout;
 using std::cin;
+using std::endl;
 
 #include <string>
 using std::string;
@@ -134,7 +135,7 @@ void menuPrincipal(int &escolha, PortaAvioes *&portaAvioes)
 		{
 			case 1:
 			{
-				portaAvioes->info();
+				cout << *portaAvioes << "/n";
 				system("PAUSE");
 				break;
 			}
@@ -154,7 +155,7 @@ void menuPrincipal(int &escolha, PortaAvioes *&portaAvioes)
 				cout << "------- SISTEMA DE CONTROLE - PORTA AVIOES -------" << "\n";
 				cout << "---------------- MENU TENENTES -------------------" << "\n";
 				
-				portaAvioes->getTenentes();
+				portaAvioes->listaTenentes();
 				
 				cout << "\n" << "Insira o Nome do Novo Tenente: ";
 				cin.ignore();
@@ -272,6 +273,129 @@ int main()
 	
 	delete ptrPortaAvioes;
 	
+	/*----------- Testa Desigualdade Porta Aviao-------------
+	PortaAvioes portaAviao(10,"John",5,3);
+	PortaAvioes portaAviao2;
+	
+	portaAviao2 = portaAviao;
+	
+	cout << "PAviao 1 != PAviao 2 ? = " << (portaAviao != portaAviao2) << endl;
+	
+	//-----------------------------------------------*/
+	
+	/*----------- Testa Igualdade Porta Aviao----------------
+	PortaAvioes portaAviao(10,"John",5,3);
+	PortaAvioes portaAviao2;
+	
+	portaAviao2 = portaAviao;
+	
+	cout << "PAviao 1 == PAviao 2 ? = " << (portaAviao == portaAviao2) << endl;
+	
+	//-----------------------------------------------*/
+	
+	/*----------- Testa Desigualdade Aviao-------------------
+	Aviao aviao1("TomaHawk",18749,4742);
+	Aviao aviao2("BlackBird",15589,6447);
+	Aviao aviao3;
+	aviao3 = aviao1;
+	
+	cout << "Aviao 1 != aviao 2 ? = " << (aviao1 != aviao2) << endl;
+	cout << "Aviao 3 != aviao 1 ? = " << (aviao3 != aviao1) << endl;
+	cout << "Aviao 3 != aviao 2 ? = " << (aviao3 != aviao2) << endl;
+	//-----------------------------------------------*/
+	
+	/*----------- Testa Igualdade Aviao----------------------
+	Aviao aviao1("TomaHawk",18749,4742);
+	Aviao aviao2("BlackBird",15589,6447);
+	Aviao aviao3;
+	aviao3 = aviao1;
+	
+	cout << "Aviao 1 == aviao 2 ? = " << (aviao1 == aviao2) << endl;
+	cout << "Aviao 3 == aviao 1 ? = " << (aviao3 == aviao1) << endl;
+	cout << "Aviao 3 == aviao 2 ? = " << (aviao3 == aviao2) << endl;
+	//-----------------------------------------------*/
+
+	/*----------- Testa Desigualdade Hangar------------------
+	Hangar hangar1;
+	Hangar hangar2;
+	
+	hangar1.setTipoDeAviao("Ataque");
+	
+	hangar2 = hangar1;
+	
+	hangar1.setTipoDeAviao("Defesa");	
+	hangar2.setTipoDeAviao("Chopper");
+	
+	cout << hangar1 << hangar2;
+	
+	cout << "Hangar 1 != HangarHangar 2 ? = " << (hangar1 != hangar2) << endl;	
+	//-----------------------------------------------*/
+	
+	/*----------- Testa Igualdade Hangar-------------
+	Hangar hangar1;
+	Hangar hangar2;
+	
+	hangar1.setTipoDeAviao("Ataque");
+	
+	hangar2 = hangar1;
+	
+	hangar1.setTipoDeAviao("Defesa");	
+	hangar2.setTipoDeAviao("Chopper");
+	
+	cout << hangar1 << hangar2;
+	
+	cout << "Hangar 1 == HangarHangar 2 ? = " << (hangar1 == hangar2) << endl;	
+	//-----------------------------------------------*/
+	
+	/*----------- Testa [] Hangar-------------
+	Hangar hangar1;
+	Hangar hangar2;
+	
+	hangar1.setTipoDeAviao("Ataque");
+	
+	hangar2 = hangar1;
+	
+	hangar1.setTipoDeAviao("Defesa");	
+	hangar2.setTipoDeAviao("Chopper");
+	
+	cout << hangar1 << hangar2;
+	
+	cout << "Hangar 1 == HangarHangar 2 ? = " << (hangar1 == hangar2) << endl;	
+	
+	cout << "\nHangar 1 \n" << "Classe - " << hangar1[10] << "\n";
+	//-----------------------------------------------*/
+	
+	/*----------- Testa [] Porta Aviao----------------
+	PortaAvioes portaAviao(10,"John",5,3);
+	portaAviao.setNovoTenente("Joaquim");
+	portaAviao.setNovoTenente("Joao");
+	portaAviao.setNovoTenente("Jose");
+	portaAviao.setNovoTenente("Yuri");
+	
+	cout << "Tenente 4 = " << portaAviao[3] << endl;
+	cout << "Tenente 2 = " << portaAviao[1] << endl;
+	cout << "Tenente 3 = " << portaAviao[2] << endl;
+	cout << "Tenente 6 = " << portaAviao[6] << endl;
+	
+	//-----------------------------------------------*/
+	
+	/*----------- Testa < e > Aviao----------------------
+	Aviao aviao1("TomaHawk",4300,4742);
+	Aviao aviao2("BlackBird",6741,6447);
+	Aviao aviao3;
+	aviao3 = aviao1;
+	
+	cout << "Velocidade Maxima: " << aviao1.getVelocidadeMaxima() << " Km/h - Nome : " << aviao1.getNomeDoAviao() << " - Tanque:" << aviao1.getCapacidadeTanque();
+	cout << "\n";
+	cout << "Velocidade Maxima: " << aviao2.getVelocidadeMaxima() << " Km/h - Nome : " << aviao2.getNomeDoAviao() << " - Tanque:" << aviao2.getCapacidadeTanque();
+	cout << "\n";
+	cout << "Velocidade Maxima: " << aviao3.getVelocidadeMaxima() << " Km/h - Nome : " << aviao3.getNomeDoAviao() << " - Tanque:" << aviao3.getCapacidadeTanque();
+	cout << "\n";
+	
+	cout << "Aviao 1 > aviao 2 ? = " << (aviao1 > aviao2) << endl;
+	cout << "Aviao 3 < aviao 1 ? = " << (aviao3 < aviao1) << endl;
+	cout << "Aviao 3 < aviao 2 ? = " << (aviao3 < aviao2) << endl;
+	//-----------------------------------------------*/
 	
 	return 0;
 	

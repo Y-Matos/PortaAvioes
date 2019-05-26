@@ -59,8 +59,15 @@ void Hangar::setTipoDeAviao(const string &nome)
 
 //-------Funcoes Get-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void Hangar::getTiposDeAviao() const
+string Hangar::getTiposDeAviao(int contador) const
 {
+	return tiposNome[contador];
+}
+
+
+void Hangar::info() const
+{
+	
 	if(tiposAtivos>0){
 		cout << "----------------------------------------" << "\n";
 		cout << "----------- INFO DO HANGAR -------------" << "\n";
@@ -69,15 +76,84 @@ void Hangar::getTiposDeAviao() const
 	}
 	
 	for(int contador=0; contador < tiposAtivos; contador++){
-		cout << "Classe "<< contador+1 << " - " <<tiposNome[contador] << "\n";
+		cout << "Classe "<< contador+1 << " - " << getTiposDeAviao(contador) << "\n";
 	}
 	cout << "\n";
 }
 
+//---------------- SOBRECARGA DE OPERADORES -----------------
 
-void Hangar::info() const
+ostream& operator << (ostream &output, const Hangar& origem)
 {
+	if(origem.tiposAtivos > 0){
+		cout << "----------------------------------------" << "\n";
+		cout << "----------- INFO DO HANGAR -------------" << "\n";
+	}else{
+		cout << "------------ HANGAR VAZIO --------------"<< "\n";
+	}
+	
+	for(int contador=0; contador < origem.tiposAtivos; contador++){
+		cout << "Classe "<< contador+1 << " - " << origem.getTiposDeAviao(contador) << "\n";
+	}
+	cout << "\n";
+	
+	return output;
+}
 
-    getTiposDeAviao();
-    
+const Hangar &Hangar::operator= (const Hangar &origem)
+{
+	if(this != &origem)
+	{
+		this->tiposAtivos = origem.tiposAtivos;
+		
+		for(int contador = 0; contador < NUMDETIPOS;contador++)
+		{
+			this->tiposNome[contador] = origem.tiposNome[contador];
+		}
+	}
+	return *this;
+}
+
+bool Hangar::operator == (const Hangar &origem) const
+{
+	if(this->tiposAtivos != origem.tiposAtivos)
+	{
+		return false;
+	}
+	for(int contador=0; contador<origem.tiposAtivos; ++contador)
+	{
+		if(this->tiposNome[contador] != origem.tiposNome[contador])
+		{
+			return false;
+		}
+	}
+	return true;
+
+}
+
+bool Hangar::operator != (const Hangar &origem) const
+{
+		return !(*this == origem);
+}
+
+string &Hangar::operator[] (int index)
+{
+	if(index < 0 || index >= NUMDETIPOS)
+	{
+		cout << "\nIndex fora dos limites \n";
+		cout << "Index 0 sera utilizado\n"; 
+		return tiposNome[0];
+	}
+	return tiposNome[index];
+}
+
+string Hangar::operator[] (int index) const
+{
+	if(index < 0 || index >= NUMDETIPOS)
+	{
+		cout << "\nIndex fora dos limites \n";
+		cout << "Index 0 utilizado\n"; 
+		return tiposNome[0];
+	}
+	return tiposNome[index];
 }
