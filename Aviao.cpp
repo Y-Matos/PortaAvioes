@@ -96,11 +96,11 @@ void Aviao::info(int index) const
 	
 ostream& operator << (ostream &output, const Aviao &origem)
 {
-	cout << "--------------------------------------------------" << "\n";
-	cout << "-------------- INFO DO AVIAO ---------------------\n" << "\n";
-	cout << "O nome do aviao eh: " << origem.getNomeDoAviao() << "\n";
-	cout << "A velocidade maxima do aviao eh: " << origem.getVelocidadeMaxima() << "km/h" << "\n";
-	cout << "A capacidade do tanque do aviao eh: " << origem.getCapacidadeTanque() << "L" << "\n";
+	output << "--------------------------------------------------" << "\n";
+	output << "-------------- INFO DO AVIAO ---------------------\n" << "\n";
+	output << "O nome do aviao eh: " << origem.getNomeDoAviao() << "\n";
+	output << "A velocidade maxima do aviao eh: " << origem.getVelocidadeMaxima() << "km/h" << "\n";
+	output << "A capacidade do tanque do aviao eh: " << origem.getCapacidadeTanque() << "L" << "\n";
 	
 	return output;
 }

@@ -7,6 +7,7 @@ using std::ostream;
 
 class Aviao
 {
+	friend ostream &operator<< (ostream &output, const Aviao&); // Imprime Dados do Avião
 public:
     Aviao(const string&, int, int);// Construtor que recebe todos os argumentos
 	Aviao();// Construtor que não recebe nenhum dos argumentos
@@ -22,10 +23,9 @@ public:
     string getNomeDoAviao() const;
     int getVelocidadeMaxima() const;
     int getCapacidadeTanque() const;
-    	
+
 	//---------------- SOBRECARGA DE OPERADORES -----------------
 	
-	friend ostream &operator<< (ostream &output, const Aviao&); // Imprime Dados do Avião
 	const Aviao &operator= (const Aviao&); // copia um avião para outro
 	bool operator == (const Aviao&) const; // testa se aviões são iguais
 	bool operator != (const Aviao&) const; // testa se aviões são diferentes

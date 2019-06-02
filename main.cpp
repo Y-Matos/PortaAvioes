@@ -273,17 +273,28 @@ int main()
 	
 	delete ptrPortaAvioes;
 	
+	
 	/*----------- Testa Desigualdade Porta Aviao-------------
 	PortaAvioes portaAviao(10,"John",5,3);
 	PortaAvioes portaAviao2;
 	
+	Aviao aviao1("TomaHawk",18749,4742);
+	Aviao aviao2("BlackBird",15589,6447);
+	
+	portaAviao.adicionaNovoAviao(aviao1);
+	portaAviao.adicionaNovoAviao(aviao2);
+	
 	portaAviao2 = portaAviao;
+	
+	portaAviao2.adicionaNovoAviao(aviao2);
 	
 	cout << "PAviao 1 != PAviao 2 ? = " << (portaAviao != portaAviao2) << endl;
 	
+	cout << portaAviao << portaAviao2;
+	
 	//-----------------------------------------------*/
 	
-	/*----------- Testa Igualdade Porta Aviao----------------
+	/*----------- Testa Igualdade Porta Aviao ---------------
 	PortaAvioes portaAviao(10,"John",5,3);
 	PortaAvioes portaAviao2;
 	

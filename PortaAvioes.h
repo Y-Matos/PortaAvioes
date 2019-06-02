@@ -6,7 +6,6 @@
 
 #include <cstddef> 
 using std::size_t;
-
 using std::ostream;
 
 #include <string>
@@ -14,6 +13,10 @@ using std::string;
 
 class PortaAvioes
 {
+	friend ostream &operator<< (ostream &output, const PortaAvioes&);
+	// AUXILIAR PARA COPIA DO ARRAY DE PONTEIROS
+	friend void swap(PortaAvioes &, PortaAvioes &);
+
 public:
 	PortaAvioes(int,const string &, int, size_t); // Construtor que recebe todos os argumentos
 	PortaAvioes(); // Construtor que não recebe nenhum dos argumentos
@@ -48,15 +51,14 @@ public:
 	
 	//---------------- SOBRECARGA DE OPERADORES -----------------
 	
-	friend ostream &operator<< (ostream &output, const PortaAvioes&);
-	const PortaAvioes &operator= ( PortaAvioes &);
+	
+	const PortaAvioes &operator= (PortaAvioes);
 	bool operator == (const PortaAvioes&) const;
-	bool operator != (const PortaAvioes &origem) const;
+	bool operator != (const PortaAvioes&) const;
 	string &operator[] (int);
 	string operator[] (int) const ;
 	
-	// AUXILIAR PARA COPIA DO ARRAY DE PONTEIROS
-	friend void swap(PortaAvioes &, PortaAvioes &);
+
 
 private:
 	Hangar hangarPrincipal;

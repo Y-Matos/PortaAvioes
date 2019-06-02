@@ -86,16 +86,16 @@ void Hangar::info() const
 ostream& operator << (ostream &output, const Hangar& origem)
 {
 	if(origem.tiposAtivos > 0){
-		cout << "----------------------------------------" << "\n";
-		cout << "----------- INFO DO HANGAR -------------" << "\n";
+		output << "----------------------------------------" << "\n";
+		output << "----------- INFO DO HANGAR -------------" << "\n";
 	}else{
-		cout << "------------ HANGAR VAZIO --------------"<< "\n";
+		output << "------------ HANGAR VAZIO --------------"<< "\n";
 	}
 	
 	for(int contador=0; contador < origem.tiposAtivos; contador++){
-		cout << "Classe "<< contador+1 << " - " << origem.getTiposDeAviao(contador) << "\n";
+		output << "Classe "<< contador+1 << " - " << origem.getTiposDeAviao(contador) << "\n";
 	}
-	cout << "\n";
+	output << "\n";
 	
 	return output;
 }
@@ -157,3 +157,4 @@ string Hangar::operator[] (int index) const
 	}
 	return tiposNome[index];
 }
+

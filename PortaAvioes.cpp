@@ -40,7 +40,7 @@ PortaAvioes::PortaAvioes() // Construtor que não recebe nenhum dos argumentos
 }
 
 PortaAvioes::PortaAvioes(const PortaAvioes &origem) // construtor de copia
-:hangarPrincipal(), capacidade(origem.capacidade), arrayAviao(capacidade ? new Aviao*[capacidade] : nullptr)
+:hangarPrincipal(), capacidade(origem.capacidade), arrayAviao(capacidade ? new Aviao*[capacidade]:nullptr)
 {
 	this->hangarPrincipal = origem.hangarPrincipal;
 	this->nomeDoCapitao = origem.nomeDoCapitao;
@@ -268,32 +268,25 @@ void PortaAvioes::getListaAvioes() const
 
 //---------------- SOBRECARGA DE OPERADORES -----------------
 
-const PortaAvioes &PortaAvioes::operator= ( PortaAvioes &origem)
+const PortaAvioes &PortaAvioes::operator= (PortaAvioes origem)
 {
-	this->capacidade = origem.capacidade;
-	swap(*this, origem);
-	
-	this->numDeAvioesAtivos = origem.numDeAvioesAtivos;
-	this->tripulacaoQuantidade = origem.tripulacaoQuantidade;
-	this->pilotosDisponiveis = origem.pilotosDisponiveis;
-	this->nomeDoCapitao = origem.nomeDoCapitao;
-	
-	
+	swap(*this,origem);
 	return *this;
+
 }
 
 ostream& operator<<(ostream &output, const PortaAvioes& origem)
 {
-	cout << "---------------------------------------" << "\n";
-    cout << "------- INFO DO PORTA AVIOES ----------\n" << "\n";
-	cout << "\nO nome do Capitao e: " << origem.getNomeDoCapitao() << "\n";
+	output << "---------------------------------------" << "\n";
+    output << "------- INFO DO PORTA AVIOES ----------\n" << "\n";
+	output << "\nO nome do Capitao e: " << origem.getNomeDoCapitao() << "\n";
 	origem.listaTenentes();
 	
-	cout << "\nO numero de Pilotos Disponiveis e de : " << origem.getPilotosDisponiveis() << "\n";
-	cout << "\nA Quantidade De Avioes Suportada e de : " << origem.getCapacidade() << "\n";
-	cout << "\nA tripulacao atual e de : " << origem.getTripulacaoQuantidade() << "\n";
-	cout << "\nO numero de Avioes ativos atualmente e de: " << origem.getNumDeAvioesAtivos() << "\n";
-	cout << "\n";
+	output << "\nO numero de Pilotos Disponiveis e de : " << origem.getPilotosDisponiveis() << "\n";
+	output << "\nA Quantidade De Avioes Suportada e de : " << origem.getCapacidade() << "\n";
+	output << "\nA tripulacao atual e de : " << origem.getTripulacaoQuantidade() << "\n";
+	output << "\nO numero de Avioes ativos atualmente e de: " << origem.getNumDeAvioesAtivos() << "\n";
+	output << "\n";
     origem.hangarPrincipal.info(); // Chama a Função Info da Classe Hangar
 	origem.getListaAvioes();       // Chama a Função Info da Classe Aviao
 	return output;
@@ -354,10 +347,13 @@ string PortaAvioes::operator[] (int index) const
 }
 
 // AUXILIAR PARA COPIA DO ARRAY DE PONTEIROS
-void swap(PortaAvioes &primeiro, PortaAvioes &segundo)
+void swap(PortaAvioes& primeiro, PortaAvioes& segundo)
 {
 		using std::swap;
-		
+		swap(primeiro.numDeAvioesAtivos, segundo.numDeAvioesAtivos);
+		swap(primeiro.tripulacaoQuantidade, segundo.tripulacaoQuantidade);
+		swap(primeiro.pilotosDisponiveis, segundo.pilotosDisponiveis);
+		swap(primeiro.nomeDoCapitao, segundo.nomeDoCapitao);
 		swap(primeiro.capacidade, segundo.capacidade);
 		swap(primeiro.arrayAviao, segundo.arrayAviao);
-	}
+}

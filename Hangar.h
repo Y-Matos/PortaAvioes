@@ -7,6 +7,7 @@ using std::ostream;
 
 class Hangar
 {
+	friend ostream &operator << (ostream &output, const Hangar&); // Imprime Dados do Hangar
 public:
 	Hangar(const string &,const string &,const string &,const string &,const string &); // INICIALIZA COM TODOS OS TIPOS
 	Hangar(); // INICIALIZA COM _VAZIO_ EM TODOS OS TIPOS
@@ -21,7 +22,6 @@ public:
 	
 	//---------------- SOBRECARGA DE OPERADORES -----------------
 	
-	friend ostream &operator << (ostream &output, const Hangar&); // Imprime Dados do Hangar
 	const Hangar &operator = (const Hangar&); // copia um avião para outro
 	bool operator == (const Hangar&) const; // testa se hangar são iguais
 	bool operator != (const Hangar&) const; // testa se hangar são diferentes
