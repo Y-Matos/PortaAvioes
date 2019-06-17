@@ -93,6 +93,18 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="AviaoReconhecimento.cpp"/>
+    <File Name="AviaoReconhecimento.h"/>
+    <File Name="AviaoTorpedeiro.cpp"/>
+    <File Name="AviaoTorpedeiro.h"/>
+    <File Name="AviaoBombardeiro.cpp"/>
+    <File Name="AviaoBombardeiro.h"/>
+    <File Name="Balao.cpp"/>
+    <File Name="Balao.h"/>
+    <File Name="Helicoptero.cpp"/>
+    <File Name="Helicoptero.h"/>
+    <File Name="Aeronave.cpp"/>
+    <File Name="Aeronave.h"/>
     <File Name="Hangar.h"/>
     <File Name="Hangar.cpp"/>
     <File Name="Aviao.h"/>

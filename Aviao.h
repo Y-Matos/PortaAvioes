@@ -1,43 +1,28 @@
 #ifndef AVIAO_H
 #define AVIAO_H
-#include <string>
-using std::string;
+#include "Aeronave.h"
 
-using std::ostream;
-
-class Aviao
+class Aviao : public Aeronave
 {
-	friend ostream &operator<< (ostream &output, const Aviao&); // Imprime Dados do Avião
+	friend ostream &operator<< (ostream &output, const Aviao&);
 public:
-    Aviao(const string&, int, int);// Construtor que recebe todos os argumentos
-	Aviao();// Construtor que não recebe nenhum dos argumentos
-	Aviao(const Aviao &);// Construtor de copia
-    ~Aviao();
-    
-	void info(int) const;
-	
-	void setNomeDoAviao(const string &);
-	void setVelocidadeMaxima(int);
-	void setCapacidadeTanque(int);
-	
-    string getNomeDoAviao() const;
-    int getVelocidadeMaxima() const;
-    int getCapacidadeTanque() const;
 
-	//---------------- SOBRECARGA DE OPERADORES -----------------
+	Aviao(const string&, int, int,int);
+	~Aviao();
+	Aviao(const Aviao &);// Construtor de copia
 	
-	const Aviao &operator= (const Aviao&); // copia um avião para outro
-	bool operator == (const Aviao&) const; // testa se aviões são iguais
-	bool operator != (const Aviao&) const; // testa se aviões são diferentes
-	bool operator < (const Aviao &origem) const; // testa se um avião é mais lento que outro
-	bool operator > (const Aviao &origem) const; // testa se um avião é mais rápido que outro
+	void setEmpuxoDoMotor(int);
+	int getEmpuxoDoMotor() const;
 	
+//---------------- SOBRECARGA DE OPERADORES -----------------
+
+	const Aviao &operator= (const Aviao&); // copia uma aeronave para outra
+	bool operator == (const Aviao&) const; // testa se aeronaves são iguais
+	bool operator != (const Aviao&) const; // testa se aeronaves são diferentes
+		
 private:
-    string nomeDoAviao;
-    int velocidadeMaxima;
-    int capacidadeTanque;
+	int empuxoDoMotor;
 	
-	const static int VELOCIDADEDOSOM = 1234;
 };
 
 #endif // AVIAO_H

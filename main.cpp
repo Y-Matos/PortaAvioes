@@ -1,6 +1,13 @@
 #include "PortaAvioes.h"
 #include "Hangar.h"
 
+#include "AviaoBombardeiro.h"
+#include "AviaoReconhecimento.h"
+#include "AviaoTorpedeiro.h"
+
+#include "Balao.h"
+#include "Helicoptero.h"
+
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -193,6 +200,7 @@ void menuPrincipal(int &escolha, PortaAvioes *&portaAvioes)
 				string nomeAviao;
 				int velocidadeMaxima = 0;
 				int capacidadeTanque = 0;
+				int empuxoDoMotor = 0;
 				cout << "------- SISTEMA DE CONTROLE - PORTA AVIOES -------" << "\n";
 				cout << "---------------- CONTROLE HANGAR -------------------" << "\n";
 				cout << "-------------- CADASTRAR NOVO TIPO -----------------" << "\n\n";
@@ -207,8 +215,10 @@ void menuPrincipal(int &escolha, PortaAvioes *&portaAvioes)
 				cin >> velocidadeMaxima;
 				cout << "\n" << "Insira a Capacidade do Tanque do Aviao: ";
 				cin >> capacidadeTanque;
+				cout << "\n" << "Insira o empuxo do motor: ";
+				cin >> empuxoDoMotor;
 				
-				Aviao *novoAviao = new Aviao(nomeAviao, velocidadeMaxima, capacidadeTanque);
+				Aviao *novoAviao = new Aviao(nomeAviao, velocidadeMaxima, capacidadeTanque,empuxoDoMotor);
 				
 				portaAvioes->adicionaNovoAviao(*novoAviao);
 				
@@ -274,6 +284,7 @@ int main()
 	delete ptrPortaAvioes;
 	
 	
+	
 	/*----------- Testa Desigualdade Porta Aviao-------------
 	PortaAvioes portaAviao(10,"John",5,3);
 	PortaAvioes portaAviao2;
@@ -316,14 +327,18 @@ int main()
 	//-----------------------------------------------*/
 	
 	/*----------- Testa Igualdade Aviao----------------------
-	Aviao aviao1("TomaHawk",18749,4742);
-	Aviao aviao2("BlackBird",15589,6447);
-	Aviao aviao3;
-	aviao3 = aviao1;
+	AviaoTorpedeiro aviao1("TomaHawk",18749,1242,15,87);
+	AviaoTorpedeiro aviao2(aviao1);
+	AviaoTorpedeiro aviao3("Johnwlasd",548,4742,16,94);
 	
-	cout << "Aviao 1 == aviao 2 ? = " << (aviao1 == aviao2) << endl;
-	cout << "Aviao 3 == aviao 1 ? = " << (aviao3 == aviao1) << endl;
-	cout << "Aviao 3 == aviao 2 ? = " << (aviao3 == aviao2) << endl;
+	aviao1=aviao3;
+	
+	cout << "aviao 1 == aviao 3 ? = " << (aviao1 == aviao3 ) << endl;	
+	cout << "aviao 1 == aviao 2 ? = " << (aviao1 == aviao2 ) << endl;	
+	
+	cout << aviao1 << endl;
+	cout << aviao2 << endl;
+	cout << aviao3 << endl;
 	//-----------------------------------------------*/
 
 	/*----------- Testa Desigualdade Hangar------------------

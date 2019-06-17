@@ -3,104 +3,50 @@
 #include <iostream>
 using std::cout;
 
-//----Construtores e Destrutores------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Aviao::Aviao(const string &nomeDoAviao,int velocidadeMaxima ,int capacidadeTanque)
+Aviao::Aviao(const string &nomeDoAviao,int velocidadeMaxima ,int capacidadeTanque, int empuxoDoMotor)
+:Aeronave(nomeDoAviao,velocidadeMaxima,capacidadeTanque)
 {
-	setNomeDoAviao(nomeDoAviao);
-	setVelocidadeMaxima(velocidadeMaxima);
-	setCapacidadeTanque(capacidadeTanque);
-}
-
-Aviao::Aviao()
-{
-	cout << "Nenhum parametro informado. Valores Padrões Carregados." << "\n";
-	this->nomeDoAviao = "Nome Aviao Padrao";
-	this->velocidadeMaxima = VELOCIDADEDOSOM;
-	this->capacidadeTanque = 1000;
-}
-
-Aviao::Aviao(const Aviao &origem)
-{
-	this->nomeDoAviao = origem.nomeDoAviao;
-	this->velocidadeMaxima = origem.velocidadeMaxima;
-	this->capacidadeTanque = origem.capacidadeTanque;
+	setEmpuxoDoMotor(empuxoDoMotor);
 }
 
 Aviao::~Aviao()
 {
-}
-
-//-------Funcoes Set---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-void Aviao::setNomeDoAviao(const string &nomeDoAviao)
-{
-	if(nomeDoAviao.length() <= 40)	{
 	
-		this->nomeDoAviao = nomeDoAviao;
-	
-	}
-	else if(nomeDoAviao.length() > 40){
-		this->nomeDoAviao = nomeDoAviao.substr(0,40);
-
-		cout << "Numero de caracteres excedeu o limite, primeiros 40 caracteres utilizados" << "\n";
-	}
 }
 
-void Aviao::setVelocidadeMaxima(int velocidadeMaxima)
+Aviao::Aviao(const Aviao&origem)
 {
-	if((velocidadeMaxima > 0) && velocidadeMaxima <= ( VELOCIDADEDOSOM*6.7 ) ){ // Mach 6.7 é a velocidade do Jato mais Rapido
-		this->velocidadeMaxima = velocidadeMaxima; 
+		this->setNomeDaAeronave(origem.getNomeDaAeronave());
+		this->setVelocidadeMaxima(origem.getVelocidadeMaxima());
+		this->setCapacidadeTanque(origem.getCapacidadeTanque());
+		this->empuxoDoMotor = origem.empuxoDoMotor;
+}
+
+
+
+
+
+
+int Aviao::getEmpuxoDoMotor() const
+{
+	return this->empuxoDoMotor;
+}
+
+void Aviao::setEmpuxoDoMotor(int empuxoDoMotor)
+{
+	if(empuxoDoMotor > 0 ){
+		this->empuxoDoMotor = empuxoDoMotor; 
 	}else {
-		this->velocidadeMaxima = VELOCIDADEDOSOM;
+		this->empuxoDoMotor = 1000;
 	}
 }
 
-void Aviao::setCapacidadeTanque(int capacidadeTanque)
-{
-	if(capacidadeTanque > 0 ){
-		this->capacidadeTanque = capacidadeTanque; 
-	}else {
-		this->capacidadeTanque = 1000;
-	}
-}
-
-//-------Funcoes Get-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-string Aviao::getNomeDoAviao() const
-{
-	return this->nomeDoAviao;
-}
-
-int Aviao::getVelocidadeMaxima() const
-{
-	return this->velocidadeMaxima;
-}
-
-int Aviao::getCapacidadeTanque() const
-{
-	return this->capacidadeTanque;
-}
-
-void Aviao::info(int index) const
-{
-	cout << "--------------------------------------------------" << "\n";
-    cout << "-------------- INFO DO AVIAO #" << index+1 << " -----------------\n" << "\n";
-    cout << "O nome do aviao eh: " << getNomeDoAviao() << "\n";
-    cout << "A velocidade maxima do aviao eh: " << getVelocidadeMaxima() << "km/h" << "\n";
-    cout << "A capacidade do tanque do aviao eh: " << getCapacidadeTanque() << "L" << "\n";
-    
-}
-
-	//---------------- SOBRECARGA DE OPERADORES -----------------
+//---------------- SOBRECARGA DE OPERADORES -----------------
 	
 ostream& operator << (ostream &output, const Aviao &origem)
 {
-	output << "--------------------------------------------------" << "\n";
-	output << "-------------- INFO DO AVIAO ---------------------\n" << "\n";
-	output << "O nome do aviao eh: " << origem.getNomeDoAviao() << "\n";
-	output << "A velocidade maxima do aviao eh: " << origem.getVelocidadeMaxima() << "km/h" << "\n";
-	output << "A capacidade do tanque do aviao eh: " << origem.getCapacidadeTanque() << "L" << "\n";
+	output << static_cast< Aeronave >(origem);
+	output << "A forca de empuxo do aviao eh: " << origem.getEmpuxoDoMotor() << " lbs" << "\n";
 	
 	return output;
 }
@@ -109,26 +55,25 @@ const Aviao &Aviao::operator= (const Aviao &origem)
 {
 	if(this != &origem)
 	{
-		this->nomeDoAviao = origem.nomeDoAviao;
-		this->velocidadeMaxima = origem.velocidadeMaxima;
-		this->capacidadeTanque = origem.capacidadeTanque;
+		this->setNomeDaAeronave(origem.getNomeDaAeronave());
+		this->setVelocidadeMaxima(origem.getVelocidadeMaxima());
+		this->setCapacidadeTanque(origem.getCapacidadeTanque());
+		this->empuxoDoMotor = origem.empuxoDoMotor;
 	}
 	return *this;
 }
 
 bool Aviao::operator == (const Aviao &origem) const
 {
-	if(this->nomeDoAviao != origem.nomeDoAviao)
+	
+	if(this != &origem)
 	{
-		return false;
-	}
-	if(this->velocidadeMaxima != origem.velocidadeMaxima)
-	{
-		return false;
-	}
-	if(this->capacidadeTanque != origem.capacidadeTanque)
-	{
-		return false;
+		if( static_cast<Aeronave>(*this) != static_cast<Aeronave>(origem) )
+			return false;
+		
+		if(this->empuxoDoMotor != origem.empuxoDoMotor)
+			return false;
+		
 	}
 	return true;
 }
@@ -136,24 +81,4 @@ bool Aviao::operator == (const Aviao &origem) const
 bool Aviao::operator != (const Aviao &origem) const
 {
 	return !(*this == origem);
-}
-
-bool Aviao::operator < (const Aviao &origem) const
-{
-	if(this->velocidadeMaxima < origem.velocidadeMaxima)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool Aviao::operator > (const Aviao &origem) const
-{
-	if(this->velocidadeMaxima > origem.velocidadeMaxima)
-	{
-		return true;
-	}
-
-	return false;
 }
